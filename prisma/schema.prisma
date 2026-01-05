@@ -1,0 +1,135 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model VehicleReport {
+  id                String   @id @default(cuid())
+  vin               String   @unique
+
+  make              String?
+  model             String?
+  modelYear         String?
+  bodyClass         String?
+  engineCylinders   String?
+  engineHP          String?
+  fuelTypePrimary   String?
+  manufacturer      String?
+  plantCity         String?
+  plantCountry      String?
+  vehicleType       String?
+
+  firstRegistration String?
+  mileage           Int?
+  status            String    @default("verified")
+  score             Float     @default(8.5)
+
+  rawNhtsaData      String?
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  lastFetchedAt     DateTime?
+
+  damageHistory     DamageRecord[]
+  mileageHistory    MileageRecord[]
+  ownershipHistory  OwnershipRecord[]
+}
+
+model DamageRecord {
+  id          String   @id @default(cuid())
+  reportId    String
+  report      VehicleReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  date        String
+  type        String
+  severity    String
+  description String
+  source      String   @default("synthetic")
+
+  createdAt   DateTime @default(now())
+
+  @@index([reportId])
+}
+
+model MileageRecord {
+  id        String   @id @default(cuid())
+  reportId  String
+  report    VehicleReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  date      String
+  mileage   Int
+  source    String
+
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+}
+
+model OwnershipRecord {
+  id        String   @id @default(cuid())
+  reportId  String
+  report    VehicleReport @relation(fields: [reportId], references: [id], onDelete: Cascade)
+
+  fromDate  String
+  toDate    String
+  country   String
+  ownerCount Int     @default(1)
+
+  createdAt DateTime @default(now())
+
+  @@index([reportId])
+}
+
+// NextAuth Models
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  password      String
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}

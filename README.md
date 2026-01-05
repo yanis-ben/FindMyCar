@@ -1,36 +1,108 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FindMyCar 🚗
 
-## Getting Started
+Une application de vérification d'historique de véhicules. Achetez en toute confiance avec des rapports VIN détaillés.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-16.0.10-black?style=flat-square&logo=next.js)
+![React](https://img.shields.io/badge/React-19.2.1-61DAFB?style=flat-square&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38B2AC?style=flat-square&logo=tailwind-css)
 
-```bash
+## ✨ Fonctionnalités principales
+
+### 📋 Vérification d'historique de véhicule par VIN
+- **Recherche rapide** : Par numéro VIN ou plaque d'immatriculation
+- **Rapports complets et détaillés** incluant :
+  - **Historique des dommages** : Accidents, réparations et dommages signalés avec photos
+  - **Vérification du kilométrage** : Détection des manipulations du compteur kilométrique
+  - **Historique de propriété** : Nombre de propriétaires précédents
+  - **Vérification de vol** : Consultation des bases de données internationales de véhicules volés
+- **Rapport instantané** : Généré en moins de 60 secondes
+- **Export PDF inclus** : Téléchargez et partagez votre rapport
+- **Plus de 900 sources de données** : Informations vérifiées et à jour
+
+### 💎 Expérience utilisateur
+- **Interface moderne** : Design responsive avec mode sombre
+- **Architecture optimisée** : Next.js App Router avec composants réutilisables
+
+## 🛠 Technologies utilisées
+
+- **Framework** : [Next.js 16](https://nextjs.org/)
+- **UI Library** : [React 19](https://react.dev/)
+- **Styling** : [Tailwind CSS v4](https://tailwindcss.com/)
+- **Language** : [TypeScript](https://www.typescriptlang.org/)
+- **Linting** : ESLint avec configuration Next.js
+
+## 🚀 Installation
+
+\`\`\`bash
+# Cloner le repository
+git clone https://github.com/votre-username/findmycar.git
+
+# Naviguer dans le dossier
+cd findmycar
+
+# Installer les dépendances
+npm install
+
+# Lancer le serveur de développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📜 Scripts disponibles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+\`\`\`bash
+npm run dev      # Démarre le serveur de développement
+npm run build    # Crée une version de production
+npm run start    # Démarre le serveur de production
+npm run lint     # Lance ESLint
+\`\`\`
 
-## Learn More
+## 📁 Structure du projet
 
-To learn more about Next.js, take a look at the following resources:
+\`\`\`
+findmycar/
+├── app/
+│   ├── components/
+│   │   ├── Header.tsx          # Navigation principale
+│   │   ├── Footer.tsx          # Pied de page
+│   │   └── VinSearchForm.tsx   # Formulaire de recherche
+│   ├── report/
+│   │   └── page.tsx            # Page de rapport détaillé
+│   ├── page.tsx                # Page d'accueil
+│   ├── layout.tsx              # Layout principal
+│   └── globals.css             # Styles globaux
+├── public/                     # Fichiers statiques
+└── package.json
+\`\`\`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎨 Personnalisation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Le projet utilise une palette de couleurs teal/emerald qui peut être personnalisée dans les composants :
 
-## Deploy on Vercel
+- Couleur principale : \`teal-600\`
+- Couleur secondaire : \`emerald-600\`
+- Dégradés : \`from-teal-500 to-emerald-600\`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🤝 Contribution
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Les contributions sont les bienvenues! N'hésitez pas à :
+
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité (\`git checkout -b feature/AmazingFeature\`)
+3. Commit vos changements (\`git commit -m 'Add some AmazingFeature'\`)
+4. Push vers la branche (\`git push origin feature/AmazingFeature\`)
+5. Ouvrir une Pull Request
+
+## 📄 Licence
+
+Ce projet est sous licence MIT. Voir le fichier \`LICENSE\` pour plus de détails.
+
+## 👨‍💻 Auteur
+
+Développé avec ❤️ en utilisant Next.js et React.
+
+## 💬 Support
+
+Pour toute question ou suggestion, n'hésitez pas à ouvrir une issue sur GitHub.

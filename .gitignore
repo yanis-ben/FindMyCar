@@ -52,3 +52,6 @@ next-env.d.ts
 
 # Prisma
 /prisma/migrations
+
+# Ignore nul file (Windows artifact)
+nul
